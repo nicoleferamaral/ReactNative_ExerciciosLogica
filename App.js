@@ -203,8 +203,80 @@ export default function App() {
       setResult('Figura não identificada');
     }
   }; //14
-  
 
+  function desProgre(){
+    const n = parseFloat(num);
+
+    if (n<100){
+      const pre = (n-(n*0.05));
+      setResult(`Com o desconto de 5% fica ${pre}`);
+    }else if(n>=100 && n<=500){
+      const pre = (n-(n*0.10));
+      setResult(`Com o desconto de 10% fica ${pre}`);
+    }else{
+      const pre = (n-(n*0.15));
+      setResult(`Com o desconto de 15% fica ${pre}`);
+    }
+
+  } //15
+
+  function celsius(){
+    const n = parseFloat(num);
+
+    const cel = ((n-32)*5/9);
+
+    setResult(`${n} Fahrenheit é igual a ${cel} Celsius `);
+  } //16
+
+  function inverterNumero(num) {
+    const str = num.toString();
+  
+    if (str.length !== 3 || isNaN(num)) {
+      setResult('Digite um número de 3 dígitos');
+      return;
+    }
+  
+    const invertido = str.split('').reverse().join('');
+    setResult(`Número invertido: ${invertido}`);
+  }//17
+
+  function imposto(){
+    const n = parseFloat(num);
+    const q = parseFloat(num2);
+
+    const total = ((n*q)*1.12);
+
+    setResult(`O total a pagar pelo produto é igual a R$${total} `);
+  } //18
+  
+  function arredondarNumero(num) {
+    const n = parseFloat(num);
+    if (isNaN(n)) {
+      setResult('Digite um número válido!');
+      return;
+    }
+  
+    setResult(`Número arredondado: ${Math.round(n)}`);
+  } // 19
+
+  function verificarTriangulo() {
+    const ladoA = parseFloat(num);
+    const ladoB = parseFloat(num2);
+    const ladoC = parseFloat(num3);
+  
+    if (isNaN(ladoA) || isNaN(ladoB) || isNaN(ladoC)) {
+      setResult('Digite três medidas válidas!');
+      return;
+    } else if (
+      ladoA + ladoB > ladoC &&
+      ladoA + ladoC > ladoB &&
+      ladoB + ladoC > ladoA
+    ) {
+      setResult('As medidas formam um triângulo válido.');
+    } else {
+      setResult('As medidas NÃO formam um triângulo.');
+    }
+  } //20
   
 
 
@@ -267,84 +339,84 @@ export default function App() {
         style={styles.button}
         onPress={() => setModalEx8Visible(true)}
       >
-        <Text style={styles.buttonText}>Exercício 8: Primo</Text>
+        <Text style={styles.buttonText}>Exercício 8: Percentual</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.button}
         onPress={() => setModalEx9Visible(true)}
       >
-        <Text style={styles.buttonText}>Exercício 9: Primo</Text>
+        <Text style={styles.buttonText}>Exercício 9: Tempo da Viagem</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.button}
         onPress={() => setModalEx10Visible(true)}
       >
-        <Text style={styles.buttonText}>Exercício 10: Primo</Text>
+        <Text style={styles.buttonText}>Exercício 10: Desconto 10%</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.button}
         onPress={() => setModalEx11Visible(true)}
       >
-        <Text style={styles.buttonText}>Exercício 11: Primo</Text>
+        <Text style={styles.buttonText}>Exercício 11: Dias Trabalhados</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.button}
         onPress={() => setModalEx12Visible(true)}
       >
-        <Text style={styles.buttonText}>Exercício 12: Primo</Text>
+        <Text style={styles.buttonText}>Exercício 12: Conversão</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.button}
         onPress={() => setModalEx13Visible(true)}
       >
-        <Text style={styles.buttonText}>Exercício 13: Primo</Text>
+        <Text style={styles.buttonText}>Exercício 13: Volume</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.button}
         onPress={() => setModalEx14Visible(true)}
       >
-        <Text style={styles.buttonText}>Exercício 14: Primo</Text>
+        <Text style={styles.buttonText}>Exercício 14: Polígono</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.button}
         onPress={() => setModalEx15Visible(true)}
       >
-        <Text style={styles.buttonText}>Exercício 15: Primo</Text>
+        <Text style={styles.buttonText}>Exercício 15: Desconto Progressivo</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.button}
         onPress={() => setModalEx16Visible(true)}
       >
-        <Text style={styles.buttonText}>Exercício 16: Primo</Text>
+        <Text style={styles.buttonText}>Exercício 16: Celsius</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.button}
         onPress={() => setModalEx17Visible(true)}
       >
-        <Text style={styles.buttonText}>Exercício 17: Primo</Text>
+        <Text style={styles.buttonText}>Exercício 17: Inverter Ordem</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.button}
         onPress={() => setModalEx18Visible(true)}
       >
-        <Text style={styles.buttonText}>Exercício 18: Primo</Text>
+        <Text style={styles.buttonText}>Exercício 18: Preço</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.button}
         onPress={() => setModalEx19Visible(true)}
       >
-        <Text style={styles.buttonText}>Exercício 19: Primo</Text>
+        <Text style={styles.buttonText}>Exercício 19: Decimal</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
@@ -661,6 +733,137 @@ export default function App() {
         </View>
       </Modal>
 
+      {/* Modal Exercício 15 */}
+      <Modal visible={modalEx15Visible} animationType="slide">
+        <View style={styles.modalContent}>
+          <Text style={styles.title}>Desconto Progressivo</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Informe um valor"
+            keyboardType="numeric"
+            value={num}
+            onChangeText={setNum}
+          />
+         
+          <Button title="Verificar" onPress={desProgre} />
+          <Text style={styles.result}>{result}</Text>
+          <Button title="Fechar" color="tomato" onPress={() => {limpar(); setModalEx15Visible(false);} }/>
+        </View>
+      </Modal>
+
+      {/* Modal Exercício 16 */}
+      <Modal visible={modalEx16Visible} animationType="slide">
+        <View style={styles.modalContent}>
+          <Text style={styles.title}>Fahrenheit Para Celsius</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Informe uma temperatura em Fahrenheit"
+            keyboardType="numeric"
+            value={num}
+            onChangeText={setNum}
+          />
+         
+          <Button title="Verificar" onPress={celsius} />
+          <Text style={styles.result}>{result}</Text>
+          <Button title="Fechar" color="tomato" onPress={() => {limpar(); setModalEx16Visible(false);} }/>
+        </View>
+      </Modal>
+
+       {/* Modal Exercício 17 */}
+       <Modal visible={modalEx17Visible} animationType="slide">
+        <View style={styles.modalContent}>
+          <Text style={styles.title}>Inverter número</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Informe um número de 3 digitos"
+            keyboardType="numeric"
+            value={num}
+            onChangeText={setNum}
+          />
+         
+          <Button title="Verificar" onPress={inverterNumero} />
+          <Text style={styles.result}>{result}</Text>
+          <Button title="Fechar" color="tomato" onPress={() => {limpar(); setModalEx17Visible(false);} }/>
+        </View>
+      </Modal>
+
+
+       {/* Modal Exercício 18 */}
+       <Modal visible={modalEx18Visible} animationType="slide">
+        <View style={styles.modalContent}>
+          <Text style={styles.title}>Total de um produto</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Informe o preço"
+            keyboardType="numeric"
+            value={num}
+            onChangeText={setNum}
+          />
+
+          <TextInput
+            style={styles.input}
+            placeholder="Informe a quantidade"
+            keyboardType="numeric"
+            value={num2}
+            onChangeText={setNum2}
+          />
+         
+          <Button title="Verificar" onPress={imposto} />
+          <Text style={styles.result}>{result}</Text>
+          <Button title="Fechar" color="tomato" onPress={() => {limpar(); setModalEx18Visible(false);} }/>
+        </View>
+      </Modal>
+
+      {/* Modal Exercício 19 */}
+      <Modal visible={modalEx19Visible} animationType="slide">
+        <View style={styles.modalContent}>
+          <Text style={styles.title}>Decimal para inteiro</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Informe o número decimal"
+            keyboardType="numeric"
+            value={num}
+            onChangeText={setNum}
+          />
+         
+          <Button title="Verificar" onPress={arredondarNumero} />
+          <Text style={styles.result}>{result}</Text>
+          <Button title="Fechar" color="tomato" onPress={() => {limpar(); setModalEx19Visible(false);} }/>
+        </View>
+      </Modal>
+
+        {/* Modal Exercício 20 */}
+        <Modal visible={modalEx20Visible} animationType="slide">
+        <View style={styles.modalContent}>
+          <Text style={styles.title}>verificar Triângulo</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Informe a 1º medida"
+            keyboardType="numeric"
+            value={num}
+            onChangeText={setNum}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Informe a 2º medida"
+            keyboardType="numeric"
+            value={num2}
+            onChangeText={setNum2}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Informe a 3º medida"
+            keyboardType="numeric"
+            value={num3}
+            onChangeText={setNum3}
+          />
+         
+          <Button title="Verificar" onPress={verificarTriangulo} />
+          <Text style={styles.result}>{result}</Text>
+          <Button title="Fechar" color="tomato" onPress={() => {limpar(); setModalEx20Visible(false);} }/>
+        </View>
+      </Modal>
+
 
 
 
@@ -720,10 +923,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#f9f9f9',
   },
   result: {
+    color: 'black',
     fontSize: 20,
-    marginVertical: 10,
     textAlign: 'center',
-    color: '#444',
+    marginTop: 30,
+    marginBottom: 100,
+    padding: 70,
+    borderWidth: 2,
+    borderColor: 'white',
+    borderRadius: 10,
   },
 });
 
