@@ -228,17 +228,17 @@ export default function App() {
     setResult(`${n} Fahrenheit é igual a ${cel} Celsius `);
   } //16
 
-  function inverterNumero(num) {
+  function inverterNumero() {
     const str = num.toString();
-  
+
     if (str.length !== 3 || isNaN(num)) {
       setResult('Digite um número de 3 dígitos');
       return;
     }
-  
+
     const invertido = str.split('').reverse().join('');
     setResult(`Número invertido: ${invertido}`);
-  }//17
+  } //17
 
   function imposto(){
     const n = parseFloat(num);
@@ -249,15 +249,15 @@ export default function App() {
     setResult(`O total a pagar pelo produto é igual a R$${total} `);
   } //18
   
-  function arredondarNumero(num) {
+  function arredondarNumero() {
     const n = parseFloat(num);
     if (isNaN(n)) {
       setResult('Digite um número válido!');
       return;
     }
-  
+
     setResult(`Número arredondado: ${Math.round(n)}`);
-  } // 19
+  }
 
   function verificarTriangulo() {
     const ladoA = parseFloat(num);
